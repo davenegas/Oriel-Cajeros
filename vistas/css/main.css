@@ -1,0 +1,163 @@
+header, section, footer, aside, nav, article, figure, figcaption, hgroup{
+	display: block;
+}
+div#tabla_uno{
+    width:300px;
+    position:relative;
+    float: left;
+    height: auto;
+    margin-right: 10px;   
+} 
+div#tabla_dos{
+    width:300px;
+    position:relative;
+    float: left;
+    height: auto;
+}
+.espacio-arriba{
+    margin-top: 20px; 
+}
+.espacio-abajo{
+    margin-bottom: 20px;
+}
+.espacio-abajo-5{
+    margin-bottom: 5px;
+}
+.espacio-arriba-15{
+    margin-top: 15px; 
+}
+.quitar-float{
+    float: none;
+}
+.pacifico{
+	font-family: 'Pacifico', cursive;
+}
+.esthela {
+        float:right;
+        width:450px;
+        height:350px;
+        background: url("../Imagenes/notas.png")no-repeat !important;
+        display:block;
+        right: -400px;
+        padding:0;
+        position:fixed;
+        top: 280px;
+        z-index:1002;
+}
+
+.rojo{
+        color: #942407;
+}
+
+.azul{
+    color: #1C496E;
+}
+
+.bordegris{
+    border-bottom: 2px solid silver;
+}
+.derecha{
+    float: right;
+}
+
+#foto_personal{
+        width:350px;
+        height:300px;
+        right: 20px;
+        position: static; 
+        top: 25px;
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+    
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 450px}
+    
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: white;
+    height: 100%;
+}
+    
+/* Set black background color, white text and some padding */
+footer {
+    background-color: white;
+    color: black;
+    padding: 15px;
+}
+    
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+.sidenav {
+    height: auto;
+    padding: 15px;
+}
+.row.content {height:auto;}
+}
+    
+.carousel-inner > .item > img,
+.carousel-inner > .item > a > img {
+    width: 50%;
+    margin: auto;
+}
+/***********************************************/
+/* Estilo para mensaje de alerta del sistema*/
+.dgcAlert {
+    top: 0;
+    position: absolute;
+    width: 100%;
+    display: block;
+    height: 1000px; 
+    background: url("../Imagenes/fondoAlert.png") repeat; 
+    text-align:center; 
+    opacity:0; 
+    display:none; 
+    z-index:999999999999999;
+}
+.dgcAlert .dgcVentana{
+    width: 500px; 
+    background: white;
+    min-height: 150px;
+    position: relative;
+    margin: 0 auto;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+}
+.dgcAlert .dgcVentana .dgcCerrar {
+    height: 25px;
+    width: 25px;
+    float: right; 
+    cursor:pointer; 
+    background: url("../Imagenes/cerrarAlert.jpg") no-repeat center center;
+}
+.dgcAlert .dgcVentana .dgcMensaje { 
+    margin: 0 auto; 
+    padding-top: 45px; 
+    text-align: center; 
+    width: 400px;
+    font-size: 20px;
+}
+.dgcAlert .dgcVentana .dgcAceptar{
+    background:#09C; 
+    bottom:20px; 
+    display: inline-block; 
+    font-size: 12px; 
+    font-weight: bold; 
+    height: 24px; 
+    line-height: 24px; 
+    padding-left: 5px; 
+    padding-right: 5px;
+    text-align: center; 
+    text-transform: uppercase; 
+    width: 75px;
+    cursor: pointer; 
+    color:#FFF; 
+    margin-top:50px;
+}
+/***********************************************/

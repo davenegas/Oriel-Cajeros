@@ -1,0 +1,193 @@
+
+/*EJEMPLO MODAL2*/
+/*----------------------------------------------
+CSS settings for HTML div Exact Center
+------------------------------------------------*/
+#ventana_oculta_1 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+    overflow:auto
+}
+
+#ventana_oculta_2 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+    overflow:auto
+}
+
+#ventana_oculta_3 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+    overflow:auto
+}
+
+#ventana_oculta_4 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+    overflow:auto
+}
+
+#ventana_oculta_5{
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color:#313131;
+    overflow:auto
+}
+
+#ventana_oculta_6 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color: #313131;
+    overflow:auto
+}
+
+#ventana_oculta_7 {
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color: #313131;
+    overflow:auto
+}
+
+#ventana_oculta_8{
+    width:100%;
+    height:100%;
+    opacity:.95;
+    top:0;
+    left:0;
+    display:none;
+    position:fixed;
+    background-color: #313131;
+    overflow:auto
+}
+
+#close {
+    position:absolute;
+    right:-14px;
+    top:-14px;
+    cursor:pointer
+}
+
+#popupventana{
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+}
+
+#ventana {
+    max-width:400px;
+    min-width:350px;
+    padding:10px 50px;
+    border:2px solid gray;
+    border-radius:10px;
+    font-family:raleway;
+    background-color:#fff
+}
+
+#popupventana2{
+    position:absolute;
+    left:35%;
+    top:15%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+}
+
+#ventana2 {
+    max-width:800px;
+    min-width:600px;
+    padding:20px 30px;
+    border:2px solid gray;
+    border-radius:10px;
+    font-family:raleway;
+    background-color:#fff
+}
+
+#popupventana3{
+    position:absolute;
+    left:30%;
+    top:15%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+}
+
+#ventana3 {
+    max-width:1000px;
+    min-width:600px;
+    padding:20px 30px;
+    border:2px solid gray;
+    border-radius:10px;
+    font-family:raleway;
+    background-color:#fff
+}
+#popupventana4{
+    position:absolute;
+    left:50%;
+    top:17%;
+    margin-left:-202px;
+    font-family:'Raleway',sans-serif
+}
+
+#ventana4 {
+    max-width:400px;
+    min-width:350px;
+    padding:10px 50px;
+    border:2px solid gray;
+    border-radius:10px;
+    font-family:raleway;
+    background-color:#fff
+}
+#msg {
+background-image:url(../images/msg.png);
+background-repeat:no-repeat;
+background-position:5px 7px;
+width:82%;
+height:95px;
+padding:10px;
+resize:none;
+margin-top:30px;
+border:1px solid #ccc;
+padding-left:40px;
+font-size:16px;
+font-family:raleway;
+margin-bottom:30px
+}
