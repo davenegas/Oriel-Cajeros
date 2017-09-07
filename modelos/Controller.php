@@ -25,8 +25,13 @@ class Controller{
     
     public function bitacora_digital_cajeros(){
         if(isset($_SESSION['nombre'])){
-            //echo "sesion abierta";
-            require __DIR__ . '/../vistas/plantillas/frm_principal.php';
+            $obj_eventos = new cls_evento();
+            
+            $obj_eventos->setCondicion("");
+            $obj_eventos->obtiene_todos_los_eventos();
+            $params = $obj_eventos->getArreglo();
+            
+            require __DIR__ . '/../vistas/plantillas/frm_eventos_cajeros_lista.php';
         }else{
             $tipo_de_alerta="alert alert-warning";
             $validacion="Es necesario volver a iniciar sesión para consultar el sistema";
@@ -56,6 +61,7 @@ class Controller{
             
             $obj_tipo_evento->setTipo_evento($_POST['tipo_evento']);
             $obj_tipo_evento->setObservaciones($_POST['observaciones']); 
+            $obj_tipo_evento->setPrioridad($_POST['prioridad']);
             $obj_tipo_evento->setEstado($_POST['estado']);
 
             if ($_POST['ID_Tipo_Evento']==0){

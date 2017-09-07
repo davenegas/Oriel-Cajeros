@@ -14,11 +14,11 @@
                 <h2 align="center">Bienvenido(a):</h2>
                 <h3 align="center"><?php echo $_SESSION['name']." ".$_SESSION['apellido'];?></h3>
                 <center>
-                    <img src="vistas/Imagenes/Objetivo Z1.jpg" alt=""/>
+                    <!--<img src="vistas/Imagenes/Objetivo Z1.jpg" alt=""/>-->
                 </center>
             </div>
         </div>
-     <?php //require 'vistas/plantillas/pie_de_pagina.php' ?>
+     <?php require 'vistas/plantillas/pie_de_pagina.php' ?>
         
     </body>
 </html>

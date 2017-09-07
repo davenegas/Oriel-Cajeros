@@ -3,6 +3,7 @@ session_start();
 
 require_once __DIR__ . '/modelos/Data_Provider.php';
 require_once __DIR__ . '/controladores/cls_tipo_evento.php';
+require_once __DIR__ . '/controladores/cls_evento.php';
 require_once __DIR__ . '/modelos/Controller.php';
 
 // enrutamiento, se enlistan cada una de las funcionalidades del controller entre comillas, tanto al inicio como al final de la línea (deben de coincidir)

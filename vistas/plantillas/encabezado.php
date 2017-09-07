@@ -23,18 +23,14 @@
             <ul class="nav navbar-nav">
                 <?php 
                 //************************************************Pinta Menu de Catalogos***************************************************************
-                if (($_SESSION['modulos']['Catálogos-Empresas']==1)){  ?>
+                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){  ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catálogos
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($_SESSION['modulos']['Catálogos-Empresas']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
                                 <li><a href="index.php?ctl=tipo_evento_listar">Tipo Evento</a></li>
-                            <?php };?>
-                                
-                            <?php if ($_SESSION['modulos']['Catálogos-Empresas']==1){ ?>
-                                <li><a href="">Estado Evento</a></li>
-                            <?php };?>
+                            <?php } ?>
                         </ul>
                     </li>
 
@@ -42,46 +38,54 @@
 
                 <?php 
                 //************************************************Pinta Menu de Reportes***************************************************************
-                if (($_SESSION['modulos']['Reportes-Eventos']==1)){ ?>
+                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){ ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu multi-level" role="menu">
-                            <?php if ($_SESSION['modulos']['Reportes-Enlaces Telecom']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
                                 <li><a href="">Bitácora</a></li> 
-                            <?php }; ?>
-                            <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
-                                <li><a href="">Otro</a></li> 
-                            <?php }; ?>
+                            <?php } ?>
                         </ul>
                     </li>
 
-                <?php }; ?>
+                <?php } ?>
                 <?php 
-
                 //************************************************Pinta Menu de Módulos***************************************************************
-                if (($_SESSION['modulos']['Módulo-Bitácora Digital']==1)||($_SESSION['modulos']['Módulo-PuntosBCR']==1)){?>
+                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){?>
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Módulos
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($_SESSION['modulos']['Módulo-Bitácora Digital']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
                                 <li><a href="index.php?ctl=bitacora_digital_cajeros">Bitácora Digital</a></li>
-                            <?php }; ?>
-                                
-                            <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
-                                <li><a href="http://localhost/Oriel/index.php?ctl=puntos_bcr_listar">Puntos BCR</a></li> 
-                            <?php }; ?>
-                                
-                            <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
-                                <li><a href="http://localhost/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
-                            <?php }; ?>
+                            <?php } ?>
+                            
                         </ul>
                     </li>
 
-                <?php }; ?>
+                <?php } ?>
 
+                <?php 
+                //************************************************Pinta Menu de Proyectos***************************************************************
+                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){ ?>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Proyectos
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            
+                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
+                                <li><a href="http://localhost/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
+                            <?php } ?>
+                            
+                            <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
+                                <li><a href="http://localhost/Oriel/index.php?ctl=puntos_bcr_listar">Puntos BCR</a></li> 
+                            <?php } ?>      
+                        </ul>
+                    </li>
+                <?php } ?>
+                    
                 <?php 
                 //************************************************Pinta Menú de Ayuda***************************************************************
                 if (($_SESSION['modulos']['Ayuda']==1)){ ?>
@@ -92,7 +96,7 @@
                             <li><a href="">Manual General Oriel</a></li>
                         </ul>
                     </li>
-                <?php }; ?>       
+                <?php } ?>       
             </ul>  
 
             <ul class="nav navbar-nav navbar-right">    

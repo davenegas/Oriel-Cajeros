@@ -12,8 +12,8 @@
             }
             //Valida informacion completa de formulario de tipo de evento
             function check_empty() {
-                if (document.getElementById('tipo_evento').value =="") {
-                    alert("Digita el tipo de evento!");
+                if (document.getElementById('tipo_evento').value =="" ||document.getElementById('estado').value ==null||document.getElementById('prioridad').value == null) {
+                    alert("Digita el tipo de evento, la prioridad y el estado!");
                 } else {
                     document.getElementById('ventana').submit();
                     document.getElementById('ventana_oculta_1').style.display = "none";
@@ -25,14 +25,16 @@
                 document.getElementById('tipo_evento').value=null;
                 document.getElementById('observaciones').value=null;
                 document.getElementById('estado').value=null;
+                document.getElementById('prioridad').value=null;
                 document.getElementById('ventana_oculta_1').style.display = "block";
             }
             //Funcion para editar informacion de tipo ip
-            function edita_tipo_evento(id_tipo_evento,tipo_evento,obser, estado){
+            function edita_tipo_evento(id_tipo_evento,tipo_evento,obser, estado,prioridad){
                 document.getElementById('ID_Tipo_Evento').value=id_tipo_evento;
                 $("#estado option[value="+estado+"]").attr("selected",true);
                 document.getElementById('tipo_evento').value=tipo_evento;
                 document.getElementById('observaciones').value=obser;
+                document.getElementById('prioridad').value=prioridad
                 document.getElementById('ventana_oculta_1').style.display = "block";
             };
         </script>
@@ -48,6 +50,7 @@
                     <th style="text-align:center" hidden>ID</th>
                     <th style="text-align:center">Tipo de evento</th>
                     <th style="text-align:center">Observaciones</th>
+                    <th style="text-align:center">Prioridad</th>
                     <th style="text-align:center">Estado</th>
                     <th style="text-align:center">Mantenimiento</th>
                 </tr>
@@ -61,13 +64,18 @@
                         <td style="text-align:center"><?php echo $params[$i]['Tipo_Evento'];?></td>
                         <td style="text-align:center"><?php echo $params[$i]['Observaciones'];?></td>
                         <!--Cambia el numero de estado por el nombre-->     
+                        <?php   if ($params[$i]['Prioridad']==1){    ?>  
+                            <td style="text-align:center">1- Alta</td>
+                        <?php } else    {?>  
+                            <td style="text-align:center">2- Baja</td>
+                        <?php } ?>
                         <?php   if ($params[$i]['Estado']==1){    ?>  
                             <td style="text-align:center">Activo</td>
                         <?php } else { ?>  
                             <td style="text-align:center">Inactivo</td>
                         <?php } ?>
                         <td style="text-align:center" ><a role="button" onclick="edita_tipo_evento('<?php echo $params[$i]['ID_Tipo_Evento'];?>','<?php echo $params[$i]['Tipo_Evento'];?>',
-                            '<?php echo $params[$i]['Observaciones'];?>','<?php echo $params[$i]['Estado'];?>')"> Editar</a></td>
+                            '<?php echo $params[$i]['Observaciones'];?>','<?php echo $params[$i]['Estado'];?>','<?php echo $params[$i]['Prioridad'];?>')"> Editar</a></td>
                     </tr>     
                 <?php } ?>
             </tbody>
@@ -91,6 +99,12 @@
 
                         <label for="observaciones">Observaciones</label>
                         <input type="text" class="form-control espacio-abajo" id="observaciones" name="observaciones" placeholder="Observaciones del tipo de evento"> 
+                        
+                        <label for="prioridad">Prioridad</label>
+                        <select class="form-control" id="prioridad" name="prioridad"> 
+                            <option value="0">1- Alta</option>
+                            <option value="1">2- Baja</option>
+                        </select>  
                         
                         <label for="estado">Estado</label>
                         <select class="form-control" id="estado" name="estado"> 

@@ -3,12 +3,21 @@
 class cls_tipo_evento{
     public $id;
     public $tipo_evento;
+    public $prioridad;
     public $observaciones;
     public $estado;
     public $obj_data_provider;
     public $arreglo;
     private $condicion;
    
+    function getPrioridad() {
+        return $this->prioridad;
+    }
+
+    function setPrioridad($prioridad) {
+        $this->prioridad = $prioridad;
+    }
+
     function getId() {
         return $this->id;
     }
@@ -69,6 +78,7 @@ class cls_tipo_evento{
     public function __construct() {
         $this->id="";
         $this->tipo_evento="";
+        $this->prioridad="";
         $this->observaciones="";
         $this->estado="";
         $this->obj_data_provider=new Data_Provider();
@@ -79,7 +89,7 @@ class cls_tipo_evento{
     function edita_tipo_evento(){
         $this->obj_data_provider->conectar();
         //Llama al metodo para editar los datos correspondientes
-        $this->obj_data_provider->edita_datos("T_TipoEvento","Tipo_Evento='".$this->tipo_evento."',Observaciones='".$this->observaciones."', Estado=".$this->estado,$this->condicion);
+        $this->obj_data_provider->edita_datos("T_TipoEvento","Tipo_Evento='".$this->tipo_evento."',Prioridad='".$this->prioridad."',Observaciones='".$this->observaciones."', Estado=".$this->estado,$this->condicion);
         //Metodo de la clase data provider que desconecta la sesión con la base de datos
         $this->obj_data_provider->desconectar();
         $this->resultado_operacion=$this->obj_data_provider->getResultado_operacion();
@@ -87,7 +97,7 @@ class cls_tipo_evento{
     
     function agregar_tipo_evento(){
         $this->obj_data_provider->conectar();
-        $this->obj_data_provider->inserta_datos("T_TipoEvento", "Tipo_Evento, Observaciones, Estado", "'".$this->tipo_evento."','".$this->observaciones."','".$this->estado."'");
+        $this->obj_data_provider->inserta_datos("T_TipoEvento", "Tipo_Evento, Prioridad, Observaciones, Estado", "'".$this->tipo_evento."','".$this->prioridad."','".$this->observaciones."','".$this->estado."'");
         $this->obj_data_provider->desconectar();
     }
     
