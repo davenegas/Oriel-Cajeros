@@ -76,11 +76,11 @@
                         <ul class="dropdown-menu">
                             
                             <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
-                                <li><a href="http://localhost/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
+                                <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
                             <?php } ?>
                             
                             <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
-                                <li><a href="http://localhost/Oriel/index.php?ctl=puntos_bcr_listar">Puntos BCR</a></li> 
+                                <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=puntos_bcr_listar">Puntos BCR</a></li> 
                             <?php } ?>      
                         </ul>
                     </li>

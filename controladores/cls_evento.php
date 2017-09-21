@@ -11,11 +11,38 @@ class cls_evento{
     public $puntobcr;
     public $tipo_evento;
     public $observaciones;
+    public $detalle;
+    public $Id_ultimo_evento_ingresado;
+    public $adjunto;
     public $estado;
     public $obj_data_provider;
     public $arreglo;
     private $condicion;
    
+    function getAdjunto() {
+        return $this->adjunto;
+    }
+
+    function setAdjunto($adjunto) {
+        $this->adjunto = $adjunto;
+    }
+
+    function getId_ultimo_evento_ingresado() {
+        return $this->Id_ultimo_evento_ingresado;
+    }
+
+    function setId_ultimo_evento_ingresado($Id_ultimo_evento_ingresado) {
+        $this->Id_ultimo_evento_ingresado = $Id_ultimo_evento_ingresado;
+    }
+
+    function getDetalle() {
+        return $this->detalle;
+    }
+
+    function setDetalle($detalle) {
+        $this->detalle = $detalle;
+    }
+
     function getId() {
         return $this->id;
     }
@@ -150,7 +177,7 @@ class cls_evento{
     function edita_estado_evento($nuevo_estado){
         $this->obj_data_provider->conectar();
         //Llama al metodo para editar los datos correspondientes
-        $this->obj_data_provider->edita_datos("T_EventoCajero","ID_Estado_Evento=".$nuevo_estado,"ID_EventoCajero=".$this->id);
+        $this->obj_data_provider->edita_datos("T_EventoCajero","ID_Estado_Evento=".$nuevo_estado,"ID_Evento=".$this->id);
         //Metodo de la clase data provider que desconecta la sesión con la base de datos
         $this->obj_data_provider->desconectar();
         $this->resultado_operacion=$this->obj_data_provider->getResultado_operacion();
@@ -176,41 +203,9 @@ class cls_evento{
         $this->resultado_operacion=true;
 
         if (count($this->arreglo)>0){
-          $this->setId_ultimo_evento_ingresado($this->arreglo[0]['ID_Evento']);
+            $this->setId_ultimo_evento_ingresado($this->arreglo[0]['ID_Evento']);
         } else {
-          $this->setId_ultimo_evento_ingresado(1);
-        }    
-    }
-  
-    //Valida que no se ingrese el mismo tipo de evento en un sitio, si ya hay uno pendiente
-    function existe_abierto_este_tipo_de_evento_en_este_sitio(){
-        //Establece la conexión con la bd
-        $this->obj_data_provider->conectar();
-        $this->obj_data_provider->trae_datos("T_EventoCajero","*","ID_Tipo_Evento=".$this->tipo_evento." AND ID_PuntoBCR=".$this->puntobcr." AND ID_Estado_Evento<>3"." AND ID_Estado_Evento<>5");
-        $this->arreglo=$this->obj_data_provider->getArreglo();
-        $this->obj_data_provider->desconectar();
-        $this->resultado_operacion=true;
-
-        if (count($this->arreglo)>0){
-          return true;
-        } else {
-          return false;
-        }    
-    }
-
-    //Valida que no se ingrese el mismo tipo de evento en un sitio, si ya hay uno pendiente
-    function obtiene_prioridad_de_tipo_de_evento(){
-        //Establece la conexión con la bd
-        $this->obj_data_provider->conectar();
-        $this->obj_data_provider->trae_datos("T_TipoEvento","*","ID_Tipo_Evento=".$this->tipo_evento);
-        $this->arreglo=$this->obj_data_provider->getArreglo();
-        $this->obj_data_provider->desconectar();
-        $this->resultado_operacion=true;
-
-        if (count($this->arreglo)>0){
-            return $this->arreglo[0]['Prioridad'];
-        } else {
-          return 0;
+            $this->setId_ultimo_evento_ingresado(1);
         }    
     }
     
@@ -219,27 +214,26 @@ class cls_evento{
         $this->obj_data_provider->conectar();
         if($this->condicion==""){
             $this->arreglo=$this->obj_data_provider->trae_datos(
-                    "T_EventoCajero
-                        LEFT OUTER JOIN bd_gerencia_seguridad.T_Provincia ON T_EventoCajero.ID_Provincia = bd_gerencia_seguridad.T_Provincia.ID_Provincia
-                        LEFT OUTER JOIN bd_gerencia_seguridad.T_TipoPuntoBCR ON T_EventoCajero.ID_Tipo_Punto = bd_gerencia_seguridad.T_TipoPuntoBCR.ID_Tipo_Punto
-                        LEFT OUTER JOIN bd_gerencia_seguridad.T_PuntoBCR ON T_EventoCajero.ID_PuntoBCR = bd_gerencia_seguridad.T_PuntoBCR.ID_PuntoBCR
-                        LEFT OUTER JOIN bd_gerencia_seguridad.T_Usuario ON T_EventoCajero.ID_Usuario = bd_gerencia_seguridad.T_Usuario.ID_Usuario
-                        LEFT OUTER JOIN T_TipoEvento ON T_EventoCajero.ID_Tipo_Evento = T_TipoEvento.ID_Tipo_Evento
-                        LEFT OUTER JOIN T_EstadoEvento ON T_EventoCajero.ID_Estado_Evento = T_EstadoEvento.ID_Estado_Evento", 
-                    "T_EventoCajero.ID_Evento, T_EventoCajero.Fecha, T_EventoCajero.Hora, T_EventoCajero.Observaciones_Evento, 
-                        T_EventoCajero.Fecha_Observaciones,
-                        T_Provincia.Nombre_Provincia, T_Provincia.ID_Provincia,
-                        T_TipoPuntoBCR.Tipo_Punto, T_TipoPuntoBCR.ID_Tipo_Punto ,
-                        T_PuntoBCR.Nombre, T_PuntoBCR.ID_PuntoBCR,T_PuntoBCR.Codigo,
-                        T_TipoEvento.Tipo_Evento, T_TipoEvento.ID_Tipo_Evento,
-                        T_EstadoEvento.ID_Estado_Evento, T_EstadoEvento.Estado_Evento, T_Usuario.ID_Usuario,
-                        T_Usuario.Nombre Nombre_Usuario,T_Usuario.Apellido",
-                    "");
+                "T_EventoCajero
+                    LEFT OUTER JOIN bd_gerencia_seguridad.T_Provincia ON T_EventoCajero.ID_Provincia = bd_gerencia_seguridad.T_Provincia.ID_Provincia
+                    LEFT OUTER JOIN bd_gerencia_seguridad.T_TipoPuntoBCR ON T_EventoCajero.ID_Tipo_Punto = bd_gerencia_seguridad.T_TipoPuntoBCR.ID_Tipo_Punto
+                    LEFT OUTER JOIN bd_gerencia_seguridad.T_PuntoBCR ON T_EventoCajero.ID_PuntoBCR = bd_gerencia_seguridad.T_PuntoBCR.ID_PuntoBCR
+                    LEFT OUTER JOIN bd_gerencia_seguridad.T_Usuario ON T_EventoCajero.ID_Usuario = bd_gerencia_seguridad.T_Usuario.ID_Usuario
+                    LEFT OUTER JOIN T_TipoEvento ON T_EventoCajero.ID_Tipo_Evento = T_TipoEvento.ID_Tipo_Evento
+                    LEFT OUTER JOIN T_EstadoEvento ON T_EventoCajero.ID_Estado_Evento = T_EstadoEvento.ID_Estado_Evento", 
+                "T_EventoCajero.ID_Evento, T_EventoCajero.Fecha, T_EventoCajero.Hora, T_EventoCajero.Observaciones_Evento, 
+                    T_EventoCajero.Fecha_Observaciones,
+                    T_Provincia.Nombre_Provincia, T_Provincia.ID_Provincia,
+                    T_TipoPuntoBCR.Tipo_Punto, T_TipoPuntoBCR.ID_Tipo_Punto ,
+                    T_PuntoBCR.Nombre, T_PuntoBCR.ID_PuntoBCR,T_PuntoBCR.Codigo,
+                    T_TipoEvento.Tipo_Evento, T_TipoEvento.ID_Tipo_Evento,
+                    T_EstadoEvento.ID_Estado_Evento, T_EstadoEvento.Estado_Evento, T_Usuario.ID_Usuario,
+                    T_Usuario.Nombre Nombre_Usuario,T_Usuario.Apellido",
+                "");
             $this->arreglo=$this->obj_data_provider->getArreglo();
             $this->obj_data_provider->desconectar();
             $this->resultado_operacion=true;
-        }
-        else{
+        } else {
             $this->arreglo=$this->obj_data_provider->trae_datos(
                 "T_EventoCajero
                     LEFT OUTER JOIN bd_gerencia_seguridad.T_Provincia ON T_EventoCajero.ID_Provincia = bd_gerencia_seguridad.T_Provincia.ID_Provincia
@@ -248,12 +242,12 @@ class cls_evento{
                     LEFT OUTER JOIN bd_gerencia_seguridad.T_Usuario ON T_EventoCajero.ID_Usuario = bd_gerencia_seguridad.T_Usuario.ID_Usuario
                     LEFT OUTER JOIN T_TipoEvento ON T_EventoCajero.ID_Tipo_Evento = T_TipoEvento.ID_Tipo_Evento
                     LEFT OUTER JOIN T_EstadoEvento ON T_EventoCajero.ID_Estado_Evento = T_EstadoEvento.ID_Estado_Evento", 
-                "T_Evento.ID_Evento, T_Evento.Fecha, T_Evento.Hora, T_Evento.Observaciones_Evento, T_Evento.Fecha_Observaciones,
+                "T_EventoCajero.ID_Evento, T_EventoCajero.Fecha, T_EventoCajero.Hora, T_EventoCajero.Observaciones_Evento, T_EventoCajero.Fecha_Observaciones,
                     T_Provincia.Nombre_Provincia, T_Provincia.ID_Provincia,
                     T_TipoPuntoBCR.Tipo_Punto, T_TipoPuntoBCR.ID_Tipo_Punto ,
                     T_PuntoBCR.Nombre, T_PuntoBCR.ID_PuntoBCR,T_PuntoBCR.Codigo,
-                    T_TipoEvento.Evento, T_TipoEvento.ID_Tipo_Evento,
-                    T_EstadoEvento.ID_EstadoEvento, T_EstadoEvento.Estado_Evento, T_Usuario.ID_Usuario,
+                    T_TipoEvento.Tipo_Evento, T_TipoEvento.ID_Tipo_Evento,
+                    T_EstadoEvento.ID_Estado_Evento, T_EstadoEvento.Estado_Evento, T_Usuario.ID_Usuario,
                     T_Usuario.Nombre Nombre_Usuario,T_Usuario.Apellido",
                 $this->condicion);
             $this->arreglo=$this->obj_data_provider->getArreglo();
@@ -268,17 +262,18 @@ class cls_evento{
         $this->obj_data_provider->conectar();
             $this->arreglo=$this->obj_data_provider->trae_datos(
                 "T_DetalleEvento "
-                    . "left outer join bd_gerencia_seguridad.T_Usuario on T_DetalleEvento.ID_Usuario=bd_gerencia_seguridad.T_Usuario.ID_Usuario "
-                    . "inner join T_EventoCajero on T_EventoCajero.ID_Evento=T_DetalleEvento.ID_Evento "
+                    . "inner join bd_gerencia_seguridad.T_Usuario on T_DetalleEvento.ID_Usuario=bd_gerencia_seguridad.T_Usuario.ID_Usuario "
+                    . "inner join bd_control_seguimiento_cajero.T_EventoCajero on T_EventoCajero.ID_Evento=T_DetalleEvento.ID_Evento "
                     . "inner join bd_gerencia_seguridad.T_PuntoBCR on bd_gerencia_seguridad.T_PuntoBCR.ID_PuntoBCR=T_EventoCajero.ID_PuntoBCR "
-                    . "inner join T_TipoEvento on T_TipoEvento.ID_Tipo_Evento=T_Evento.ID_Tipo_Evento", 
+                    . "inner join bd_control_seguimiento_cajero.T_TipoEvento on T_TipoEvento.ID_Tipo_Evento=T_EventoCajero.ID_Tipo_Evento", 
                 "T_DetalleEvento.*,T_Usuario.Nombre Nombre_Usuario,T_Usuario.Apellido,"
-                    . "concat(concat(concat(T_PuntoBCR.Nombre,' ['),T_TipoEvento.Evento),']') as PuntoBCR_TipoEvento",
+                    . "concat(concat(concat(T_PuntoBCR.Nombre,' ['),T_TipoEvento.Tipo_Evento),']') as PuntoBCR_TipoEvento",
                 $this->condicion);
             $this->arreglo=$this->obj_data_provider->getArreglo();
             $this->obj_data_provider->desconectar();
         $this->resultado_operacion=true;
         }   catch (Exception $e){
+            //
         }
     }
     
@@ -297,5 +292,54 @@ class cls_evento{
         }
     }
     
+    //Valida que no se ingrese el mismo tipo de evento en un sitio, si ya hay uno pendiente
+    function existe_abierto_este_tipo_de_evento_en_este_sitio($id_tipo_evento, $id_puntobcr){
+        //Establece la conexión con la bd
+        $this->obj_data_provider->conectar();
+        $this->obj_data_provider->trae_datos("T_EventoCajero","*",
+            "ID_Tipo_Evento=".$id_tipo_evento." AND ID_PuntoBCR=".$id_puntobcr." AND ID_Estado_Evento<>3"." AND ID_Estado_Evento<>5");
+        $this->arreglo=$this->obj_data_provider->getArreglo();
+        $this->obj_data_provider->desconectar();
+        $this->resultado_operacion=true;
+
+        if (count($this->arreglo)>0){
+            return true;
+        } else {
+            return false;
+        }    
+    }
+ 
+    function obtener_estado_evento(){
+        $this->obj_data_provider->conectar();
+        if($this->condicion==""){
+            $this->obj_data_provider->trae_datos("T_EstadoEvento","*","");
+        } else {
+            $this->obj_data_provider->trae_datos("T_EstadoEvento","*",$this->condicion);
+        }
+        $this->arreglo=$this->obj_data_provider->getArreglo();
+        $this->obj_data_provider->desconectar();
+        $this->resultado_operacion=true;
+    }
     
+    public function ingresar_evento(){
+        try{
+            $this->obj_data_provider->conectar();
+            $this->obj_data_provider->inserta_datos("T_EventoCajero","Fecha, Hora, ID_Usuario, ID_Provincia, ID_Tipo_Punto, ID_PuntoBCR, ID_Tipo_Evento, ID_Estado_Evento",
+                "'".$this->fecha."','".$this->hora."','".$this->usuario."','".$this->provincia."','".$this->tipo_punto."','".$this->puntobcr."','".$this->tipo_evento."','".$this->estado."'");
+            $this->obj_data_provider->desconectar();
+        } catch (Exception $exc){
+            echo $exc->getTraceAsString();
+        }
+    }
+    
+    public function ingresar_seguimiento_evento(){
+        try{
+            $this->obj_data_provider->conectar();
+            $this->obj_data_provider->inserta_datos("T_DetalleEvento","ID_Evento, ID_Usuario, Fecha, Hora, Detalle, Adjunto",
+                    "'".$this->id."','".$this->usuario."','".$this->fecha."','".$this->hora."','".$this->detalle."','".$this->adjunto."'");
+            $this->obj_data_provider->desconectar();
+        }  catch (Exception $exc){
+            echo $exc->getTraceAsString();
+        }
+    }
 }
