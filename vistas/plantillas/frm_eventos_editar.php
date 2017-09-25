@@ -73,7 +73,7 @@
             <div class="row well">
                 <h3  align="center" class="icon-caret-right" data-toggle="collapse" data-target="#Historial_seguimiento_evento"><span class="glyphicon glyphicon-chevron-right"></span>Agregar nuevo seguimiento</h3>
                 <form class="collapse" id="Historial_seguimiento_evento" role="form" enctype="multipart/form-data" onSubmit="return enviado()" method="POST" action="index.php?ctl=guardar_seguimiento_evento&id=<?php echo trim($ide);?>">
-                    <?php if ($_SESSION['modulos']['Adjuntar archivos- Seguimientos Bitácora']==1){ ?>
+                    <?php if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){ ?>
                         <div class="row espacio-abajo">
                             <div class="col-xs-12">
                                 <label for="archivo_adjunto">Adjuntar Archivo: </label>

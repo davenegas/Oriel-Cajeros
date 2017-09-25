@@ -50,7 +50,12 @@ class cls_datos_gerencia_seguridad {
     public function obtener_puntos_bcr_por_provincia_y_tipo_de_punto(){
         try{
             $this->obj_data_provider->conectar();
-            $this->arreglo=$this->obj_data_provider->trae_datos("bd_gerencia_seguridad.T_PuntoBCR", "ID_PuntoBCR, concat(Nombre,' #',Codigo) Nombre", $this->condicion);
+            $this->arreglo=$this->obj_data_provider->trae_datos("bd_gerencia_seguridad.T_PuntoBCR
+                INNER JOIN bd_gerencia_seguridad.T_Distrito on T_Distrito.ID_Distrito = T_Puntobcr.ID_Distrito
+                INNER JOIN bd_gerencia_seguridad.t_canton on T_Canton.ID_Canton = T_Distrito.ID_Canton
+                INNER JOIN bd_gerencia_seguridad.t_provincia on T_Provincia.ID_Provincia = T_Canton.ID_Provincia",
+                "ID_PuntoBCR, concat(Codigo,' -',Nombre) Nombre, T_Provincia.ID_Provincia", 
+                $this->condicion."  ORDER BY Nombre ASC");
             $this->arreglo=$this->obj_data_provider->getArreglo();
             $this->obj_data_provider->desconectar();
             $this->resultado_operacion=true;
@@ -91,8 +96,8 @@ class cls_datos_gerencia_seguridad {
                     . "INNER JOIN bd_gerencia_seguridad.t_Distrito ON t_PuntoBCR.ID_Distrito=t_Distrito.ID_Distrito "
                     . "INNER JOIN bd_gerencia_seguridad.t_Canton ON t_Distrito.ID_Canton=t_Canton.ID_Canton "
                     . "INNER JOIN bd_gerencia_seguridad.t_Provincia ON t_Canton.ID_Provincia=t_Provincia.ID_Provincia", 
-                "t_PuntoBCR.ID_PuntoBCR, concat(t_puntobcr.Nombre,' #',t_puntobcr.Codigo) Nombre",
-                $this->condicion." ORDER BY t_PuntoBCR.Nombre ASC");
+                "t_PuntoBCR.ID_PuntoBCR, concat(t_puntobcr.Codigo,' -', t_puntobcr.Nombre) Nombre",
+                $this->condicion." ORDER BY Nombre ASC");
             $this->arreglo=$this->obj_data_provider->getArreglo();
             $this->obj_data_provider->desconectar();
         $this->resultado_operacion=true;

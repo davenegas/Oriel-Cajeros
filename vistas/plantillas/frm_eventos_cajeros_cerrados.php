@@ -195,7 +195,7 @@
                             <th>Tipo de Evento</th>
                             <th>Estado del Evento</th>
                             <th>Cerrado Por</th>
-                            <?php if ($_SESSION['modulos']['Recuperar Eventos Cerrados']==1){ ?>  
+                            <?php if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){ ?>  
                                 <th>Gestión</th>
                             <?php } ?>  
                             <th>Consulta</th>
@@ -225,7 +225,7 @@
                             <td><?php echo $params[$i]['Estado_Evento'];?></td>
                             <td><?php echo $detalle_y_ultimo_usuario[$i]['Usuario'] ?></td>
                             <!--<td><?php echo $params[$i]['Nombre_Usuario']." ".$params[$i]['Apellido'] ?></td>-->
-                            <?php if ($_SESSION['modulos']['Recuperar Eventos Cerrados']==1){ ?>  
+                            <?php if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){ ?>  
                                 <td align="center"><a onclick="recuperar_evento(<?php echo $params[$i]['ID_Evento'];?>,<?php echo $params[$i]['ID_PuntoBCR'];?>,<?php echo $params[$i]['ID_Tipo_Evento'];?>);">Recuperar Evento</a></td>
                             <?php } ?>
                             <td align="center"><a href="index.php?ctl=frm_eventos_editar&accion=consulta_cerrados&id=<?php echo $params[$i]['ID_Evento']?>">Ver detalle</a></td>

@@ -22,7 +22,7 @@
                         <th hidden="true">ID_Evento</th>
                         <th style="text-align:center">Fecha</th>
                         <th style="text-align:center">Hora</th>
-                        <th style="text-align:center">Lapso</th>
+                        <th style="text-align:center">Lapso en días</th>
                         <th style="text-align:center">Provincia</th>
                         <th style="text-align:center">Tipo Punto</th>
                         <th style="text-align:center">Punto BCR</th>
@@ -35,13 +35,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php
-                    for ($i = 0; $i <count($params); $i++) { ?>
+                    <?php for ($i = 0; $i <count($params); $i++) { 
+                        $fecha_evento = date_create($params[$i]['Fecha']);
+                        $fecha_actual = date_create(date("d-m-Y"));
+                        $dias_abierto= date_diff($fecha_evento, $fecha_actual);
+                        ?>
                         <tr>
                             <td hidden><?php echo $params[$i]['ID_Evento'];?></td>
                             <td style="text-align:center"><?php echo $params[$i]['Fecha'];?></td>
                             <td style="text-align:center"><?php echo $params[$i]['Hora'];?></td>
-                            <td style="text-align:center">Pend</td>
+                            <td style="text-align:center"><?php echo $dias_abierto->format('%a');?></td>
                             <td style="text-align:center"><?php echo $params[$i]['Nombre_Provincia'];?></td>
                             <td style="text-align:center"><?php echo $params[$i]['Tipo_Punto'];?></td>
                             <td style="text-align:center"><?php echo $params[$i]['Nombre'];?></td>

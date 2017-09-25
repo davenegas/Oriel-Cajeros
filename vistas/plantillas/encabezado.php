@@ -23,12 +23,12 @@
             <ul class="nav navbar-nav">
                 <?php 
                 //************************************************Pinta Menu de Catalogos***************************************************************
-                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){  ?>
+                if (($_SESSION['modulos']['Catálogos Cajeros-Tipo Evento']==1)){  ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Catálogos
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Catálogos Cajeros-Tipo Evento']==1){ ?>
                                 <li><a href="index.php?ctl=tipo_evento_listar">Tipo Evento</a></li>
                             <?php } ?>
                         </ul>
@@ -38,12 +38,12 @@
 
                 <?php 
                 //************************************************Pinta Menu de Reportes***************************************************************
-                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){ ?>
+                if (($_SESSION['modulos']['Reportes Cajeros-Eventos']==1)){ ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Reportes
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu multi-level" role="menu">
-                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Reportes Cajeros-Eventos']==1){ ?>
                                 <li><a href="">Bitácora</a></li> 
                             <?php } ?>
                         </ul>
@@ -52,13 +52,13 @@
                 <?php } ?>
                 <?php 
                 //************************************************Pinta Menu de Módulos***************************************************************
-                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){?>
+                if (($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1)){?>
 
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Módulos
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
+                            <?php if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){ ?>
                                 <li><a href="index.php?ctl=bitacora_digital_cajeros">Bitácora Digital</a></li>
                             <?php } ?>
                             
@@ -69,15 +69,13 @@
 
                 <?php 
                 //************************************************Pinta Menu de Proyectos***************************************************************
-                if (($_SESSION['modulos']['Seguridad-Trazabilidad']==1)){ ?>
+                if (($_SESSION['modulos']['Módulo-PuntosBCR']==1)){ ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Proyectos
                             <span class="caret"></span></a>
                         <ul class="dropdown-menu">
                             
-                            <?php if ($_SESSION['modulos']['Seguridad-Trazabilidad']==1){ ?>
-                                <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
-                            <?php } ?>
+                            <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=principal">Principal Oriel</a></li> 
                             
                             <?php if ($_SESSION['modulos']['Módulo-PuntosBCR']==1){ ?>
                                 <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=puntos_bcr_listar">Puntos BCR</a></li> 
@@ -93,7 +91,12 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Ayuda
                         <span class="caret"></span></a>
                         <ul class="dropdown-menu">
-                            <li><a href="">Manual General Oriel</a></li>
+                            
+                            <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=manual_ayuda_privado&manual=Usuario_Inicial">Manual Usuario Inicial</a></li>
+                            
+                            <?php if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){ ?>
+                                <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=manual_ayuda_privado&manual=Bitacora_Digital_Cajeros">Manual Bitácora Digital Cajeros</a></li>
+                            <?php }; ?>  
                         </ul>
                     </li>
                 <?php } ?>       

@@ -21,12 +21,19 @@ class Controller{
         }
     }
     
+    public function cerrar_sesion(){
+        //Envia un tipo de alerta de información, indicando que el sistema cerró la sesion actual
+        $tipo_de_alerta="alert alert-info";
+        $validacion="Verificación de Identidad";
+        //Llamada al formulario correspondiente de la vista
+        $this->volver_oriel();
+        //Función de PHP que permite destruir la sesión actual del usuario.
+        session_destroy();
+    }
+    
     public function volver_oriel(){
-        try {
-            header ("10.170.5.92:8080/ORIEL/index.php?ctl=iniciar_sesion");
-        } catch (Exception $e){
-            header ("location:/ORIEL/index.php?ctl=iniciar_sesion");
-        }
+        header ("10.170.5.92:8080/ORIEL/index.php?ctl=iniciar_sesion");
+        //header ("location:/ORIEL/index.php?ctl=iniciar_sesion");
     }
     ////////////////////////////////////////////////////////////////////////////
     //////////////////BITACORA DIGITAL CAJEROS//////////////////////////////////
@@ -59,7 +66,7 @@ class Controller{
                         if ($i==0){
                             $todos_los_seguimientos_juntos=$obj_eventos->getArreglo();
                         }else{
-                            print_r($todos_los_seguimientos_juntos);
+                            //print_r($todos_los_seguimientos_juntos);
                             $todos_los_seguimientos_juntos = array_merge($todos_los_seguimientos_juntos,$obj_eventos->getArreglo());                 
                         }
                     }
@@ -118,12 +125,12 @@ class Controller{
             $lista_provincias= $obj_gerencia_seguridad->getArreglo();
             
             //Obtiene los tipos de eventos de bd_gerencia_seguridad
-            $obj_gerencia_seguridad->setCondicion("ID_Tipo_Punto in (2,3,4,12) AND Estado=1");
+            $obj_gerencia_seguridad->setCondicion("ID_Tipo_Punto in (2,3,4,8,12) AND Estado=1");
             $obj_gerencia_seguridad->obtener_todos_los_tipos_de_puntos_BCR();
             $lista_tipos_de_puntos_bcr=$obj_gerencia_seguridad->getArreglo();
             
             //Obtiene los ATM de oficinas del San José
-            $obj_gerencia_seguridad->setCondicion("ID_Tipo_Punto=2 and Estado=1");
+            $obj_gerencia_seguridad->setCondicion("T_PuntoBCR.ID_Tipo_Punto=2 and T_PuntoBCR.Estado=1 and T_Provincia.ID_Provincia=1");
             $obj_gerencia_seguridad->obtener_puntos_bcr_por_provincia_y_tipo_de_punto();
             $lista_puntos_bcr_sj=$obj_gerencia_seguridad->getArreglo();
             
@@ -306,14 +313,12 @@ class Controller{
                 exit;
             }else{
                 // En caso de que no hayan resultados, muestra en pantalla la información
-                $html="<h4>No se encontraron eventos para este sitio.</h4>";
+                $html="<h4>No se encontraron seguimientos para este evento.</h4>";
                 //Imprime la variable html construida
                 echo $html;
                 //Sale del metodo
                 exit;
             }    
-        } else {
-            echo "No entra";
         }
     }
     
@@ -660,7 +665,7 @@ class Controller{
                 $html.="<th>Estado del Evento</th>";
                 $html.="<th>Cerrado Por</th>";
                 //Dependiendo del rol del usuario en cuestión, mostrará el botón de gestión de los eventos.
-                if ($_SESSION['modulos']['Recuperar Eventos Cerrados']==1){  
+                if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){  
                     $html.="<th>Gestión</th>";
                 }
                 //Resto de columnas
@@ -704,7 +709,7 @@ class Controller{
                     $html.="<td>".$detalle_y_ultimo_usuario[$i]['Usuario']."</td>";
 
                     //Dependiendo del rol del usuario, muestra en pantalla la opción de recuperar eventos
-                    if ($_SESSION['modulos']['Recuperar Eventos Cerrados']==1){  
+                    if ($_SESSION['modulos']['Módulo Cajeros-Bitácora Digital']==1){  
                         //Asigna la función de javascript que ejecuta la recuperación en vivo del evento, para que sea reabierto
                         $html.="<td align='center'><a onclick='recuperar_evento(".$params[$i]['ID_Evento'].",".$params[$i]['ID_PuntoBCR'].",".$params[$i]['ID_Tipo_Evento'].")'>Recuperar Evento</a></td>";
                     }   

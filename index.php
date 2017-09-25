@@ -13,6 +13,7 @@ $map = array(
     //Controlador General
     'inicio' => array('controller' =>'Controller', 'action' =>'inicio'),
     'listar' => array('controller' =>'Controller', 'action' =>'listar'),
+    'cerrar_sesion' => array('controller' =>'Controller', 'action' =>'cerrar_sesion'),
     
     //Controlador Tipo eventos
     'tipo_evento_listar' => array('controller' =>'Controller', 'action' =>'tipo_evento_listar'),
