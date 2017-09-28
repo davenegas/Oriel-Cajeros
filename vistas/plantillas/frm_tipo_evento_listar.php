@@ -8,7 +8,11 @@
         <script>
             //Funcion para ocultar ventana de mantenimiento de tipo de evento
             function ocultar_elemento(){
-                document.getElementById('ventana_oculta_1').style.display = "none";
+                document.getElementById('popupventana').className = "animated zoomOut";
+                setTimeout(function() {
+                    document.getElementById('popupventana').className = "animated zoomIn";
+                    document.getElementById('ventana_oculta_1').style.display = "none";
+                }, 500);
             }
             //Valida informacion completa de formulario de tipo de evento
             function check_empty() {
@@ -86,7 +90,7 @@
         
         <!--agregar o editar tipo punto- Ventana oculta-->
         <div id="ventana_oculta_1"> 
-            <div id="popupventana">
+            <div id="popupventana" class="animated zoomIn">
                 <!--Formulario para direccionamiento de las ip-->
                 <form id="ventana" method="POST" name="form" action="index.php?ctl=tipo_evento_guardar">
                     <img id="close" src='vistas/Imagenes/cerrar.png' width="25" onclick ="ocultar_elemento()">

@@ -115,7 +115,6 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-default">Guardar Seguimiento</button>
-                    <a href="index.php?ctl=frm_eventos_listar" class="btn btn-default" role="button">Cancelar</a>
                 </form>
             </div>
             <?php } ?>

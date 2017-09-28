@@ -104,7 +104,7 @@
 
             <ul class="nav navbar-nav navbar-right">    
                 <li><a href="index.php?ctl=inicio"><span class="glyphicon glyphicon-user"></span><?php echo $_SESSION['name']." ".$_SESSION['apellido'];?></a></li>
-                <li><a href="index.php?ctl=cerrar_sesion"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>    
+                <li><a href="http://10.170.5.92:8080/Oriel/index.php?ctl=cerrar_sesion"><span class="glyphicon glyphicon-log-in"></span>Cerrar Sesión</a></li>    
             </ul>
       </div>
     </nav>
