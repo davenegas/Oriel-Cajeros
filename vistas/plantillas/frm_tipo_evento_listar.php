@@ -86,7 +86,7 @@
         </table>
         <a id="popup" onclick="mostrar_agregar_tipo_evento()" class="btn btn-default espacio-arriba" role="button">Agregar Nuevo Tipo Evento</a>
         </div>
-        <?php //require 'vistas/plantillas/pie_de_pagina.php' ?>
+        <?php require 'vistas/plantillas/pie_de_pagina.php' ?>
         
         <!--agregar o editar tipo punto- Ventana oculta-->
         <div id="ventana_oculta_1"> 

@@ -424,7 +424,6 @@ class Controller{
                 $obj_eventos->setPuntobcr($_POST['punto_bcr']);
                 $obj_eventos->setEstado($_POST['estado_evento']);
                 $obj_eventos->setUsuario($_SESSION['id']);
-                $obj_eventos->setEstado(1);
                
                 //Verifica que no exista este tipo de evento abierto para este punto BCR
                 if (!$obj_eventos->existe_abierto_este_tipo_de_evento_en_este_sitio($_POST['tipo_evento'],$_POST['punto_bcr'])){
@@ -577,13 +576,13 @@ class Controller{
             //Establece la condición SQL para definir el rango de fechas del reporte
             $condicion="(T_EventoCajero.Fecha between '".$fecha_inicial."' AND '".$fecha_final."') AND (T_EventoCajero.ID_Estado_Evento=3 OR T_EventoCajero.ID_Estado_Evento=5)";
             if($id_punto_bcr!=0){
-                $condicion.=" AND T_Evento.ID_PuntoBCR=".$id_punto_bcr;
+                $condicion.=" AND T_EventoCajero.ID_PuntoBCR=".$id_punto_bcr;
             } if($id_tipo_evento!=0){
-                $condicion.=" AND T_Evento.ID_Tipo_Evento=".$id_tipo_evento;
+                $condicion.=" AND T_EventoCajero.ID_Tipo_Evento=".$id_tipo_evento;
             } if($id_tipo_punto!=0){
-                $condicion.=" AND T_Evento.ID_Tipo_Punto=".$id_tipo_punto;
+                $condicion.=" AND T_EventoCajero.ID_Tipo_Punto=".$id_tipo_punto;
             } if($id_provincia!=0){
-                $condicion.=" AND T_Evento.ID_Provincia=".$id_provincia;
+                $condicion.=" AND T_EventoCajero.ID_Provincia=".$id_provincia;
             }
 
             //Establece la condicion de la consulta
